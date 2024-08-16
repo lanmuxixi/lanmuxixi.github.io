@@ -170,6 +170,18 @@
             </li>
           
         
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
@@ -380,20 +392,21 @@
   
     <article id="comments" lazyload>
       
-  <div id="valine"></div>
+  <div id="waline"></div>
   <script type="text/javascript">
-    Fluid.utils.loadComments('#valine', function() {
-      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.css')
+      Fluid.utils.createScript('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.js', function() {
         var options = Object.assign(
-          {"appId":"A4FhCnSVecjivK1HJHs7X9Fb-MdYXbMMI","appKey":"OAdTZLWcirRwyFajjTMBSq4e","path":"window.location.pathname","placeholder":"发表一条友善的评论~","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://a4fhcnsv.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {"serverURL":"waline-red-delta.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10,"placeholder":"发表一条友善的评论~"},
           {
-            el: "#valine",
+            el: '#waline',
             path: window.location.pathname
           }
         )
-        new Valine(options);
-        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
-          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
           Fluid.plugins.imageCaption(imgSelector);
           Fluid.plugins.fancyBox(imgSelector);
         })
